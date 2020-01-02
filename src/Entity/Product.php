@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+// use App\Entity\Order;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -25,6 +27,16 @@ class Product
      * @ORM\Column(type="float")
      */
     private $price;
+
+    /**
+     * Many Products have Many Orders.
+     * @ORM\ManyToMany(targetEntity="App\Entity\Order", mappedBy="products")
+     */
+    private $orders;
+
+    public function __construct() {
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId(): ?int
     {

@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+// use App\Entity\Client;
+// use App\Entity\Product;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
@@ -25,11 +28,29 @@ class Order
      * @ORM\Column(type="integer")
      */
     private $id_client;
+    
+    /**
+     * Many clients have one order. This is the owning side.
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="orders")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
+    /**
+     * Many Orders have Many Products.
+     * @ORM\ManyToMany(targetEntity="App\Entity\Product", inversedBy="orders")
+     * @ORM\JoinTable(name="products")
+     */
+    private $products;
 
     /**
      * @ORM\Column(type="float")
      */
     private $cost;
+
+    public function __construct() {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId(): ?int
     {

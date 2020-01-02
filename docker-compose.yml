@@ -4,7 +4,7 @@ services:
         build: .docker/apache
         container_name: corporalabs_apache
         ports:
-          - 8081:80
+          - 8181:80
         volumes:
           - .docker/config/vhosts:/etc/apache2/sites-enabled
           - .:/home/www/corporalabs

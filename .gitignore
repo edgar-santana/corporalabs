@@ -7,4 +7,5 @@
 /public/bundles/
 /var/
 /vendor/
+/.docker/data/db/#innodb_temp/*.ibt
 ###< symfony/framework-bundle ###

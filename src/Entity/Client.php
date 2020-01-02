@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+// use App\Entity\Order;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
@@ -19,7 +20,7 @@ class Client
 
     /**
      * One client has many orders. This is the inverse side.
-     * @OneToMany(targetEntity="Order", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="client")
      */
     private $orders;
 
