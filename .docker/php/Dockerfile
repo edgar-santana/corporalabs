@@ -11,6 +11,18 @@ COPY php-fpm-pool.conf /etc/php/7.2.3/pool.d/www.conf
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer
 
+# Install dependencies:
+# - nodejs: Compile assets
+# - npm: Install node modules
+# - yarn: Install & manage node modules [should make npm obsolete]
+# - libpq-dev
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install -qq -y nodejs yarn \
+    libpq-dev
+
 RUN groupadd corporalabs -g 999
 RUN useradd corporalabs -g corporalabs -d /home/corporalabs -m
 # RUN chown corporalabs /home/www/corporalabs

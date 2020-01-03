@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-// use App\Entity\Client;
-// use App\Entity\Product;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
@@ -25,21 +24,16 @@ class Order
     private $created_at;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_client;
-    
-    /**
      * Many clients have one order. This is the owning side.
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="orders")
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_client", referencedColumnName="id")
      */
     private $client;
 
     /**
      * Many Orders have Many Products.
      * @ORM\ManyToMany(targetEntity="App\Entity\Product", inversedBy="orders")
-     * @ORM\JoinTable(name="products")
+     * @ORM\JoinTable(name="order_products")
      */
     private $products;
 
@@ -91,6 +85,44 @@ class Order
     public function setCost(float $cost): self
     {
         $this->cost = $cost;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+        }
 
         return $this;
     }
