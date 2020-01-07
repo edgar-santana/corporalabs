@@ -13,9 +13,9 @@ MySQL - 8.0.18 : Database - corporalabs
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`corporalabs` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`corporalabs_prod` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-USE `corporalabs`;
+USE `corporalabs_prod`;
 
 /*Table structure for table `client` */
 
@@ -102,7 +102,7 @@ insert  into `orders_products`(`order_id`,`product_id`,`amount`) values
 
 (2,2,4),
 
-(3,4,2);
+(3,3,2);
 
 /*Table structure for table `product` */
 
