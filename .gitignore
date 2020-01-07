@@ -6,7 +6,6 @@
 /public/bundles/
 /var/
 /vendor/
-/.docker/data/db/#innodb_temp/*.ibt
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -15,22 +14,4 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
-.docker/data/db/corporalabs/product.ibd
-.docker/data/db/binlog.000012
-.docker/data/db/binlog.000013
-.docker/data/db/binlog.000014
-.docker/data/db/binlog.000015
-.docker/data/db/binlog.000016
-.docker/data/db/binlog.index
-.docker/data/db/ib_buffer_pool
-.docker/data/db/ib_logfile0
-.docker/data/db/ibdata1
-.docker/data/db/ibtmp1
-.docker/data/db/mysql.ibd
-.docker/data/db/undo_001
-.docker/data/db/undo_002
-.docker/data/db/corporalabs/client.ibd
-.docker/data/db/corporalabs/client_order.ibd
-.docker/data/db/corporalabs/order.ibd
-.docker/data/db/corporalabs/order_products.ibd
-.docker/data/db/corporalabs/orders_products.ibd
+.docker/data/db/#innodb_temp
