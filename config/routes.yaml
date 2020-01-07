@@ -1,3 +1,75 @@
 corporalabs_main:
   path: /
   controller: App\Controller\CorporaLabsController::index
+
+client_new:
+  path: /client/new
+  controller: App\Controller\ClientController::new
+
+client_edit:
+  path: /client/{id}
+  controller: App\Controller\ClientController::edit
+  requirements:
+        id: '\d+'
+
+client_delete:
+  path: /client/{id}/delete
+  controller: App\Controller\ClientController::delete
+  requirements:
+        id: '\d+'
+
+client_list:
+  path: /list/client
+  controller: App\Controller\ClientController::list
+
+product_new:
+  path: /product/new
+  controller: App\Controller\ProductController::new
+
+product_edit:
+  path: /product/{id}
+  controller: App\Controller\ProductController::edit
+  requirements:
+        id: '\d+'
+
+product_delete:
+  path: /product/{id}/delete
+  controller: App\Controller\ProductController::delete
+  requirements:
+        id: '\d+'
+
+product_list:
+  path: /list/product
+  controller: App\Controller\ProductController::list
+
+client_order_new:
+  path: /order/new
+  controller: App\Controller\ClientOrderController::new
+
+client_order_edit:
+  path: /order/{id}
+  controller: App\Controller\ClientOrderController::edit
+  requirements:
+        id: '\d+'
+
+client_order_delete:
+  path: /order/{id}/delete
+  controller: App\Controller\ClientOrderController::delete
+  requirements:
+        id: '\d+'
+
+client_order_list:
+  path: /list/order
+  controller: App\Controller\ClientOrderController::list
+
+api_clients:
+  path: /api/clients
+  controller: App\Controller\ApiController::getClients
+
+api_products:
+  path: /api/products
+  controller: App\Controller\ApiController::getProducts
+
+api_orders:
+  path: /api/orders
+  controller: App\Controller\ApiController::getOrders

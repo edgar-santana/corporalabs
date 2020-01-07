@@ -1,49 +1,30 @@
-<nav>
-    <ul>
-        <li>
-            <div class="menu_parent">
-                <a href="">Pedidos</a>
-            </div>
-            <div class="menu_children">
-                <ul>
-                    <li>
-                        <a href="">Listado</a>
-                    </li>
-                    <li>
-                        <a href="">Nuevo pedido</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <div class="menu_parent">
-                <a href="">Clientes</a>
-            </div>
-            <div class="menu_children">
-                <ul>
-                    <li>
-                        <a href="">Listado</a>
-                    </li>
-                    <li>
-                        <a href="">Nuevo cliente</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <div class="menu_parent">
-                <a href="">Productos</a>
-            </div>
-            <div class="menu_children">
-                <ul>
-                    <li>
-                        <a href="">Listado</a>
-                    </li>
-                    <li>
-                        <a href="">Nuevo producto</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-    </ul>
+<nav class="navbar navbar-expand-lg bg-light-bender-ligth navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opcions">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="opcions">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" id="dropdownClientMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Clients</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownClientMenuLink">
+                    <a class="dropdown-item" href="{{ path('client_list') }}">List</a>
+                    <a class="dropdown-item" href="{{ path('client_new') }}">New client</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" id="dropdownProductMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Products</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownProductMenuLink">
+                    <a class="dropdown-item" href="{{ path('product_list') }}">List</a>
+                    <a class="dropdown-item" href="{{ path('product_new') }}">New product</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="buton" id="dropdownOrderMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Orders</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownOrderMenuLink">
+                    <a class="dropdown-item" href="{{ path('client_order_list') }}">List</a>
+                    <a class="dropdown-item" href="{{ path('client_order_new') }}">New order</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>

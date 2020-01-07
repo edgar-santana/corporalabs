@@ -29,13 +29,14 @@ class Product
     private $price;
 
     /**
+     * Simulating ManyToMany relation trougth OrdersProducts entity
      * Many Products have Many Orders.
-     * @ORM\ManyToMany(targetEntity="App\Entity\Order", mappedBy="order_products")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrdersProducts", mappedBy="products")
      */
-    private $orders;
+    private $orders_products;
 
     public function __construct() {
-        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orders_products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,28 +69,31 @@ class Product
     }
 
     /**
-     * @return Collection|Order[]
+     * @return Collection|OrdersProducts[]
      */
-    public function getOrders(): Collection
+    public function getOrdersProducts(): Collection
     {
-        return $this->orders;
+        return $this->orders_products;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrdersProduct(OrdersProducts $ordersProduct): self
     {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->addOrderProduct($this);
+        if (!$this->orders_products->contains($ordersProduct)) {
+            $this->orders_products[] = $ordersProduct;
+            $ordersProduct->setProducts($this);
         }
 
         return $this;
     }
 
-    public function removeOrder(Order $order): self
+    public function removeOrdersProduct(OrdersProducts $ordersProduct): self
     {
-        if ($this->orders->contains($order)) {
-            $this->orders->removeElement($order);
-            $order->removeOrderProduct($this);
+        if ($this->orders_products->contains($ordersProduct)) {
+            $this->orders_products->removeElement($ordersProduct);
+            // set the owning side to null (unless already changed)
+            if ($ordersProduct->getProducts() === $this) {
+                $ordersProduct->setProducts(null);
+            }
         }
 
         return $this;

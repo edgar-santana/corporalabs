@@ -47,4 +47,9 @@ class ClientRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findAllApi(){
+        $query = $this->createQueryBuilder('c')->select('c.id, c.name');
+
+        return $query->getQuery()->getResult();
+    }
 }

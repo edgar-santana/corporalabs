@@ -20,9 +20,9 @@ class Client
 
     /**
      * One client has many orders. This is the inverse side.
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="App\Entity\ClientOrder", mappedBy="client")
      */
-    private $orders;
+    private $client_orders;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -51,30 +51,30 @@ class Client
     }
 
     /**
-     * @return Collection|Order[]
+     * @return Collection|ClientOrder[]
      */
-    public function getOrders(): Collection
+    public function getClientOrders(): Collection
     {
-        return $this->orders;
+        return $this->client_orders;
     }
 
-    public function addOrder(Order $order): self
+    public function addClientOrder(ClientOrder $client_order): self
     {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->setClient($this);
+        if (!$this->client_orders->contains($client_order)) {
+            $this->client_orders[] = $client_order;
+            $client_order->setClient($this);
         }
 
         return $this;
     }
 
-    public function removeOrder(Order $order): self
+    public function removeClientOrder(ClientOrder $client_order): self
     {
-        if ($this->orders->contains($order)) {
-            $this->orders->removeElement($order);
+        if ($this->client_orders->contains($client_order)) {
+            $this->client_orders->removeElement($client_order);
             // set the owning side to null (unless already changed)
-            if ($order->getClient() === $this) {
-                $order->setClient(null);
+            if ($client_order->getClient() === $this) {
+                $client_order->setClient(null);
             }
         }
 

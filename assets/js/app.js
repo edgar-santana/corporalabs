@@ -11,4 +11,13 @@ require('../css/app.css');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
 
+$(document).ready(function(){
+    debugger;
+    $('i.fa-trash').click(function(e){
+        if(confirm("Are you sure?") == false){
+            e.preventDefault();
+        }
+    })
+});
+
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

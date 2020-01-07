@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ClientOrderRepository")
  */
-class Order
+class ClientOrder
 {
     /**
      * @ORM\Id()
@@ -25,17 +25,17 @@ class Order
 
     /**
      * Many clients have one order. This is the owning side.
-     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="client_orders")
      * @ORM\JoinColumn(name="id_client", referencedColumnName="id")
      */
     private $client;
 
     /**
+     * Simulating ManyToMany relation trougth OrdersProducts entity
      * Many Orders have Many Products.
-     * @ORM\ManyToMany(targetEntity="App\Entity\Product", inversedBy="orders")
-     * @ORM\JoinTable(name="order_products")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrdersProducts", mappedBy="client_orders")
      */
-    private $products;
+    private $orders_products;
 
     /**
      * @ORM\Column(type="float")
@@ -43,8 +43,10 @@ class Order
     private $cost;
 
     public function __construct() {
-        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orders_products = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->created_at = new \DateTime();
     }
+
 
     public function getId(): ?int
     {
@@ -56,23 +58,9 @@ class Order
         return $this->created_at;
     }
 
-    // public function setCreatedAt(\DateTimeInterface $created_at): self
-    public function setCreatedAt(): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        // $this->created_at = $created_at;
-        $this->created_at = date('Y-m-d');
-
-        return $this;
-    }
-
-    public function getIdClient(): ?int
-    {
-        return $this->id_client;
-    }
-
-    public function setIdClient(int $id_client): self
-    {
-        $this->id_client = $id_client;
+        $this->created_at = $created_at;
 
         return $this;
     }
@@ -102,28 +90,33 @@ class Order
     }
 
     /**
-     * @return Collection|Product[]
+     * @return Collection|OrdersProducts[]
      */
-    public function getProducts(): Collection
+    public function getOrdersProducts(): Collection
     {
-        return $this->products;
+        return $this->orders_products;
     }
 
-    public function addProduct(Product $product): self
+    public function addOrdersProduct(OrdersProducts $ordersProduct): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
+        if (!$this->orders_products->contains($ordersProduct)) {
+            $this->orders_products[] = $ordersProduct;
+            $ordersProduct->setOrders($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Product $product): self
+    public function removeOrdersProduct(OrdersProducts $ordersProduct): self
     {
-        if ($this->products->contains($product)) {
-            $this->products->removeElement($product);
+        if ($this->orders_products->contains($ordersProduct)) {
+            $this->orders_products->removeElement($ordersProduct);
+            // set the owning side to null (unless already changed)
+            if ($ordersProduct->getOrders() === $this) {
+                $ordersProduct->setOrders(null);
+            }
         }
 
         return $this;
-    }
+    }    
 }

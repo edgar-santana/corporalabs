@@ -1,3 +1,120 @@
-body {
-    background-color: lightgray;
+/** General styles **/
+body{
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif !important;
+}
+
+.bg-light-bender-ligth{ background-color: #bed9e0!important; }
+
+.title{
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.index-main img{
+    width: 30%;
+}
+
+/** Header styles **/
+.page-header img{
+    max-width: 75%;
+}
+.page-header .header-title{
+    font-size: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+}
+
+/** Form styles **/
+form label{ 
+    margin-right: 5px;
+    font-weight: bold;
+}
+form input[type="text"]{
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+}
+form button{
+    background-color: #bdd9e0 !important;
+    border-color: #93a9af !important;
+    color: black !important;
+    margin-top: 10px;
+}
+form button:hover{
+    background-color: #93a9af;
+}
+
+/** Overide menu styles **/
+.navbar-nav .nav-link {
+    color: rgb(32, 37, 41);
+    font-size: 1.3em;
+}
+
+/** Overide icon styles **/
+i{ color: #3e4546 !important; }
+
+/** Overide pagintation styles **/
+.page-item.active .page-link {
+    background-color: #3e4546 !important;
+    border-color: #3e4546 !important;
+}
+
+/** Overide table styles **/
+table thead tr td{ font-weight: bold; }
+table.dataTable thead tr td.sorting:after,
+table.dataTable thead tr td.sorting_asc:after,
+table.dataTable thead tr td.sorting_desc:after,
+table.dataTable thead tr td.sorting:before,
+table.dataTable thead tr td.sorting_asc:before,
+table.dataTable thead tr td.sorting_desc:before {
+    position: absolute !important;
+    top: 0px !important;
+    right: 8px !important;
+    display: block !important;
+    font-family: FontAwesome !important;
+}
+table.dataTable thead tr td.sorting:after {
+    content: "\f0dc" !important;
+    color: #ddd !important;
+    font-size: 0.8em !important;
+    padding-top: 0.12em !important;
+}
+table.dataTable thead tr td.sorting_asc:after {
+    content: "\f0de" !important;
+}
+table.dataTable thead tr td.sorting_desc:after {
+    content: "\f0dd" !important;
+}
+
+table.dataTable thead tr td.sorting:before {
+    content: "\f0dc" !important;
+    color: #ddd !important;
+    font-size: 0.8em !important;
+    padding-top: 0.12em !important;
+}
+table.dataTable thead tr td.sorting_asc:before {
+    content: "\f0de" !important;
+}
+table.dataTable thead tr td.sorting_desc:before {
+    content: "\f0dd" !important;
+}
+table.dataTable thead tr td.sorting:after {
+    color: #191919 !important;
+    font-size: 0.9em !important;
+}
+
+@media (min-width: 576px) {
+    .page-header .header-title{ font-size: 3em; }
+}
+
+@media (min-width: 768px) {
+    .page-header .header-title{ font-size: 4em; }
+}
+
+@media (min-width: 992px) { 
+    .page-header .header-title{ font-size: 4em; }
 }
